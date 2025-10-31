@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form>
+        <table border="1" width="60%">
+            <tr>
+                <td colspan="4" align="center">
+                    <h2>Registration Form</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>Student Name</td>
+                <td><input type="text" name="firstname" placeholder="First Name"></td>
+                <td><input type="text" name="middlename" placeholder="Middle Name"></td>
+                <td><input type="text" name="lastname" placeholder="Last Name"></td>
+            </tr>
+            <tr>
+                <td>Father's Name</td>
+                <td><input type="text" name="fathername" placeholder="Enter your father's Name"></td>
+                <td>Mother's Name</td>
+                <td><input type="text" name="mothername" placeholder="Enter your Mother's Name"></td>
+            </tr>
+            <tr>
+                <td>Date of Birth</td>
+                <td><input type="date" name="dob"></td>
+                <td>Gender</td>
+                <td>
+                    Male <input type="radio" name="gender" value="male">
+                    Female <input type="radio" name="gender" value="female">
+                </td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>
+                    Gen <input type="radio" name="category" value="gen">
+                    OBC <input type="radio" name="category" value="obc">
+                    SC/ST <input type="radio" name="category" value="scst">
+                </td>
+                <td>Handicapped</td>
+                <td>
+                    Yes <input type="radio" name="handicapped" value="yes">
+                    No <input type="radio" name="handicapped" value="no">
+                </td>
+            </tr>
+            <tr>
+                <td>Ex-Serviceman</td>
+                <td>
+                    Yes <input type="radio" name="exserviceman" value="yes">
+                    NO <input type="radio" name="exserviceman" value="no">
+                </td>
+                <td>EWS</td>
+                <td>
+                    Yes <input type="radio" name="ews" value="yes">
+                    No <input type="radio" name="ews" value="no">
+                </td>
+            </tr>
+            <tr>
+                <td>Email ID</td>
+                <td><input type="email" name="email"></td>
+                <td>Mobile No.</td>
+                <td><input type="text" name="mobile"></td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>
+                    <select name="state">
+                        <option value="">Select any One</option>
+                        <option value="state1">State 1</option>
+                        <option value="state2">State 2</option>
+                    </select>
+                </td>
+                <td>City</td>
+                <td>
+                    <select name="city">
+                        <option value="">Select any One</option>
+                        <option value="city1">City 1</option>
+                        <option value="city2">City 2</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Upload Photo</td>
+                <td><input type="file" name="photo"> No file selected.</td>
+                <td>Upload Signature</td>
+                <td><input type="file" name="signature"> No file selected.</td>
+            </tr>
+            <tr>
+                <td colspan="4" align="center">
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
