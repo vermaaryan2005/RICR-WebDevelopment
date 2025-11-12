@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Registration</h1>
+        
+        <form>
+            <div class="input-group">
+                <span class="icon">&#x1F464;</span>
+                <input type="text" placeholder="Enter your name" required>
+            </div>
+
+            <div class="input-group">
+                <span class="icon">&#x1F4E7;</span>
+                <input type="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <span class="icon">&#x1F512;</span>
+                <input type="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="input-group">
+                <span class="icon">&#x1F512;</span>
+                <input type="password" id="confirmPassword" placeholder="Confirm a password" required>
+                <span class="eye-icon" onclick="togglePassword()">&#x1F441;</span>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I accept all terms & conditions</label>
+            </div>
+
+            <button type="submit" class="register-btn">Register Now</button>
+
+            <div class="login-link">
+                Already have an account? <a href="#">Login now</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('confirmPassword');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+            } else {
+                passwordField.type = 'password';
+            }
+        }
+    </script>
+</body>
+</html>

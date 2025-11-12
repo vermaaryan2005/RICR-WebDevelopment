@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0059ff 0%, #005eff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.registration-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 40px;
+    width: 500px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #333;
+    border-bottom: 3px solid #005eff;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: none;
+    border-bottom: 2px solid #999;
+    background-color: transparent;
+    font-size: 16px;
+    color: #555;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    border-bottom-color: #2a5298;
+}
+
+.input-group input::placeholder {
+    color: #999;
+}
+
+.input-group .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+  
+    color: #666;
+    font-size: 20px;
+}
+
+.input-group .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+
+    color: #666;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.checkbox-group label {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
+
+.register-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #005eff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+    background-color: #1e3c72;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+.login-link a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

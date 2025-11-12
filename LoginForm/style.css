@@ -1,0 +1,77 @@
+
+body{
+    background-color: aliceblue;
+    background:url(https://th.bing.com/th/id/OIP.Si0tJjK0vIwgnUrDY3ca9gHaEK?w=243&h=182&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3);
+     
+}
+
+    #mainbox{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    margin: 50 px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 1px 1px grey;
+
+}
+#formHeading{
+    text-align: center;
+    color: blue;
+}
+#loginForm{
+    width: max-content;
+    margin: auto;
+    padding: 10px;
+}
+.formField{
+    padding: 10px;
+    label{
+        border: 1px dotted #000;
+    }
+}
+#formField label{
+    color: red;
+
+}
+.formField input{
+    padding: 10px;
+    border-radius: 25px;
+}
+#fromcontrol{
+    margin:auto;
+    width: fit-content;
+    button{
+        padding: 7px;
+        margin: 10px;
+        border-radius: 25px;
+    }
+}
+#submitButton{
+    background-color: blue;
+    color: white;
+    border: 1px solid red;
+}
+#cancelButton{
+    background-color: red;
+    color: white;
+     border: 1px solid green;
+}
+#submitButton :hover{
+    background-color: white;
+    color: green;
+}
+#cancelButton :hover{
+    background-color: white;
+    color: red;
+}
+#submitButton :active{
+    background-color: blue;
+    color: white;
+}
+#cancelButton :active{
+    background-color: red;
+    color: white;
+}
+

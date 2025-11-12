@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Momo+Trust+Display&display=swap');
+h1{
+    background-color: blue;
+}
+h2{
+    font-family: "Handlee", ;
+    background-color: brown;
+}
+h3{
+    font-family: "Handlee", system-ui, -apple-system, BlinkMacSystemFont,
+     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
+}
+p{
+    font-family:"Manrope",cursive;
+    font-weight: 800;
+    font-style: italic;
+    font-variant: small-caps;
+ 
+
+
+}
+
+#div1{
+    border: 10px solid red;
+    width:500px;
+}
+#div2{
+    border: 7px double red;
+    wiwdth: 500px;
+
+}
