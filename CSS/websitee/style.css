@@ -518,6 +518,7 @@ body {
     background-color: #fff;
     padding: 80px 0;
     text-align: center;
+     filter: grayscale();
 }
 
 .popular-clients-section h2 {
@@ -691,4 +692,23 @@ body {
     font-size: 12px;
     font-weight: 600;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
