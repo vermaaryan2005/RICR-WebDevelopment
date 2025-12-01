@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Game</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div class="bg-primary text-white text-center py-4">
+      <h1>Dice Game</h1>
+    </div>
+
+    <main>
+      <div class="container mt-5">
+        <div class="row">
+          <!-- Player 1 -->
+          <div class="col-md-6 mb-4">
+            <div class="border border-dark rounded p-4 bg-light shadow">
+              <h2 class="text-center mb-4">Player 1</h2>
+
+              <div class="text-center mb-4">
+                <img
+                  id="player1DiceImg"
+                  src="https://cdn.pixabay.com/photo/2013/07/12/17/39/dice-152178_640.png"
+                  height="80"
+                  width="80"
+                />
+              </div>
+
+              <div class="text-center">
+                <button
+                  id="p1Play"
+                  class="btn btn-primary"
+                  disabled
+                  onclick="p1Play()"
+                >
+                  Roll Dice
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Player 2 -->
+          <div class="col-md-6 mb-4">
+            <div class="border border-dark rounded p-4 bg-light shadow">
+              <h2 class="text-center mb-4">Player 2</h2>
+
+              <div class="text-center mb-4">
+                <img
+                  id="player2DiceImg"
+                  src="https://cdn.pixabay.com/photo/2013/07/12/17/39/dice-152178_640.png"
+                  height="80"
+                  width="80"
+                />
+              </div>
+
+              <div class="text-center">
+                <button
+                  id="p2Play"
+                  class="btn btn-primary"
+                  disabled
+                  onclick="p2Play()"
+                >
+                  Roll Dice
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Board -->
+        <div class="bg-white mt-4 p-4 border rounded shadow">
+          <h3 class="text-center mb-4 text-dark">Score Board</h3>
+
+          <div class="row text-center mb-4">
+            <div class="col-6">
+              <h5>Player 1</h5>
+              <h2 class="fw-bold"><span id="player1">0</span></h2>
+            </div>
+
+            <div class="col-6">
+              <h5>Player 2</h5>
+              <h2 class="fw-bold"><span id="player2">0</span></h2>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button id="start" class="btn btn-success" onclick="startGame()">
+              Start Game
+            </button>
+
+            <button
+              id="restart"
+              class="btn btn-danger"
+              disabled
+              onclick="restart()"
+            >
+              Restart Game
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js">
+   
+    </script>
+  </body>
+</html>
