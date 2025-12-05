@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+</head>
+<body class="bg-info d-flex justify-content-center align-items-center vh-100">
+
+    <style>
+    #greybutton{
+        button:hover{
+            background-color: lightgrey;
+        }
+    }#cancle{
+      background-color: red;
+
+    }
+    #ans{
+      background-color: orangered;
+    }
+  </style>
+
+  <div class="rounded-3 p-4 bg-dark" style="width: 320px;">
+    
+    <input type="text" class="form-control mb-3 mt-4 p-3 text-end" placeholder="0" name="display" id="display" disabled>
+
+    <div class="row g-3" id="greybutton">
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('7')">7</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('8')">8</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('9')">9</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('/')">/</button></div>
+
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('4')">4</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('5')">5</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('6')">6</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('+')">+</button></div>
+
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('1')">1</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('2')">2</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('3')">3</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('-')">-</button></div>
+
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('0')">0</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('')".>.</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" onclick="Input('+')">+</button></div>
+      <div class="col-3"><button class="btn btn-light btn-lg w-100" id="cancle" onclick="Input('c')">C</button></div>
+
+      <div class="col-12"><button class="btn btn-lg w-100" id="ans" onclick="Input('=')">=</button></di
+  </div>
+  
+
+  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+</body>
+</html>

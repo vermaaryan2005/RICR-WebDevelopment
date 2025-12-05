@@ -1,0 +1,67 @@
+#bulb{
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: fit-content;
+}
+#button{
+    margin: 10px;
+}
+input{
+    height: 100px;
+    width: 400px;
+}
+#smartBulb{
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: fit-content;
+}
+.on{
+    background-color: yellow;
+}
+#rainbowbulb{
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: fit-content;
+}
+
+
+#colorpaLet{
+    margin: 10px;
+    display: flex;
+    gap: 10px;
+    border-radius: 50%;
+}
+.color{
+    height: 50px;
+    width: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:default;
+    
+}
+#c1{
+    background-color: violet;
+}
+#c2{
+    background-color: indigo; 
+}
+#c3{
+    background-color:blue;
+}
+#c4{
+    background-color: green;
+}
+#c5{
+    background-color: yellow;
+}
+#c6{
+    background-color: orange;
+}
+#c7{
+    background-color: red;
+}
