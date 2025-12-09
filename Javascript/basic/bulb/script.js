@@ -21,6 +21,7 @@ function changeBulbColor(color) {
 
 
 
+
 function SB_Control() {
   const btn = document.getElementById("SB_btn");
   if (btn.innerText === "on") {
@@ -43,11 +44,6 @@ document.getElementById("c1").addEventListener("mouseenter",()=>{
 document.getElementById("c1").addEventListener("mouseleave",()=>{
   fillColorur("white");
 })
-function fillColorur(color){
-  console.log(color);
-  document.getElementById("rainbowbulb").style.backgroundColor = color;
-}
-
 document.getElementById("c2").addEventListener("mouseenter",()=>{
   fillColorur("indigo");
 })
@@ -89,3 +85,9 @@ document.getElementById("c7").addEventListener("mouseenter",()=>{
 document.getElementById("c7").addEventListener("mouseleave",()=>{
   fillColorur("white");
 })
+
+function fillColorur(color){
+  console.log(color);
+  document.getElementById("rainbowbulb").style.backgroundColor = color;
+}
+
