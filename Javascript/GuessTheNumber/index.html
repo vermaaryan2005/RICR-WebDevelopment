@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="card shadow-lg game-card">
+            <div class="card-header text-center py-3">
+                <h1 class="mb-0 fw-bold">Guess The Number</h1>
+            </div>
+
+            <div class="card-body p-4">
+                <div class="alert alert-info mb-4">
+                    <h5 class="mb-2">How to Play</h5>
+                    <p class="mb-0">
+                        We have selected a random number between <strong>1 - 10</strong>. 
+                        Try to guess it.
+                    </p>
+                </div>
+
+                <form id="guessForm">
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold fs-5">
+                            Enter a guess:
+                        </label>
+                        <div class="input-group input-group-lg">
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="guessInput"
+                                placeholder="Enter number 1-10"
+                                min="1"
+                                max="10"
+                                required
+                                autocomplete="off">
+                            <button class="btn btn-primary px-4" type="submit" id="submitBtn">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="messageArea"></div>
+
+                <div class="d-grid mt-4">
+                    <button class="btn btn-outline-secondary btn-lg" id="resetBtn">
+                        🔄 New Game
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

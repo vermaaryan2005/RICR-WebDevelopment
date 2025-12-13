@@ -1,0 +1,58 @@
+body {
+  background-image: linear-gradient(
+    to right bottom,
+    #0d6af6,
+    #0083fd,
+    #0099fb,
+    #00abf4,
+    #12bbeb
+  );
+  overflow: hidden;
+}
+.box {
+  min-height: 100vh;
+}
+img {
+  height: 80vh;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+#div {
+  width: fit-content;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+#parent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#state {
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 2px solid white;
+  width: fit-content;
+  background-color: rgba(255, 255, 255, 0.572);
+}
+
+.small{
+  margin-top: 30px;
+}
+
+@media (max-width: 400px) {
+  img {
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+  }
+  #state {
+    margin-bottom: 10%;
+  }
+  h2 {
+    margin: 10px;
+    font-weight: bolder;
+  }
+}
