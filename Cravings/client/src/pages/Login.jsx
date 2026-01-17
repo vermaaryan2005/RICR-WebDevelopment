@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
    
     email: "",
@@ -11,7 +14,7 @@ const Login = () => {
    
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [validationError, setValidationError] = useState({});
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,40 +29,21 @@ const Login = () => {
     });
   };
 
-  const validate = () => {
-    let Error = {};
-
-  
-    if (
-      !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email
-      )
-    ) {
-      Error.email = "Use Proper Email Format";
-    }
-
-    setValidationError(Error);
-
-    return Object.keys(Error).length > 0 ? false : true;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    if (!validate()) {
-      setIsLoading(false);
-      toast.error("Fill the Form Correctly");
-      return;
-    }
+    console.log(formData)
+
 
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
       handleClearForm();
+      navigate("/user-dashboard")
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
+      toast.error(erro?.response?.data?.message|| "Unknown Error");
     } finally {
       setIsLoading(false);
     }
@@ -87,11 +71,7 @@ const Login = () => {
               <div className="mb-10">
                 <div className="space-y-4">
                   <div>
-                    {validationError.email && (
-                      <span className="text-xs text-red-500">
-                        {validationError.email}
-                      </span>
-                    )}
+                  
                   </div>
 
                   <input
@@ -105,11 +85,7 @@ const Login = () => {
                     className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
 
-                  {validationError.password && (
-                    <span className="text-xs text-red-500">
-                      {validationError.password}
-                    </span>
-                  )}
+                  
 
                   <input
                     type="password"
