@@ -4,59 +4,67 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
-  const {user, isLogin} = useAuth();
-  const navigate = useNavigate();
-
+  const{user,isLogin}=useAuth();
+    const navigate = useNavigate();
   return (
     <>
-      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center">
+      <div className="bg-(--color-primary) px-4 py-2 flex justify-between items-center sticky top-0 p-5 ">
         <Link to={"/"}>
           <img
             src={tranparentLogo}
             alt=""
-            className="h-12 w-20 object-cover invert-100"
+            className="h-12 w-20 object-cover invert-100 hover:scale-105"
           />
         </Link>
         <div className="flex gap-4">
           <Link
             to={"/"}
-            className="text-decoration-none text-white hover:text-(--color-accent)"
+            className="text-decoration-none text-white hover:text-(--color-accent) hover:scale-105"
           >
+    
             Home
           </Link>
           <Link
             to={"/about"}
-            className="text-decoration-none text-white hover:text-(--color-accent)"
+            className="text-decoration-none text-white hover:text-(--color-accent) hover:scale-105"
           >
             About
           </Link>
           <Link
             to={"/contact"}
-            className="text-decoration-none text-white hover:text-(--color-accent)"
+            className="text-decoration-none text-white hover:text-(--color-accent) hover:scale-105"
           >
             Contact
           </Link>
         </div>
-        <div className="flex gap-4">
-         {
-          isLogin ? <span className="text-red-500">{user.fullName}</span>:<>
-           <button
-            onClick={() => navigate("/login")}
-            className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded "
-          >
-            Login
-          </button>
-          <button
-            onClick={() => navigate("/register")}
-            className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded "
-          >
-            Register
-          </button></>
-         }
+        <div className="flex gap-5">
+         {isLogin? ( <div className="text-red-800 font-bold text-xl me-5  cursor-pointer hover:scale-110" onClick={ ()=> navigate("user-dashboard")}>{user.fullName}</div>
+         
+        ): (
+            <>
+              
+              <button
+                onClick={() => navigate("/login")}
+                className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded "
+              >
+                Login
+              </button>
+              <button
+                onClick={() => navigate("/register")}
+                className="bg-(--color-secondary) py-2 px-4 font-bold hover:bg-(--color-secondary-hover) hover:text-white rounded "
+              >
+                Register
+              </button>
+            </>
+          )}
         </div>
       </div>
     </>
   );
-};
+      };
+      
+      
+
+
 
 export default Header;

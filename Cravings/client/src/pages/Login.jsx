@@ -43,7 +43,7 @@ const Login = () => {
       toast.success(res.data.message);
       setUser(res.data.data)
       setIsLogin(true);
-      sessionStorage.getItem
+      sessionStorage.setItem("Cravings", JSON.stringify(res.data.data))
       handleClearForm();
       navigate("/user-dashboard")
     } catch (error) {
