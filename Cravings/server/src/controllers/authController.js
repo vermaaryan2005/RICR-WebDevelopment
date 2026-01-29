@@ -4,18 +4,19 @@ import { genToken } from "../utils/authToken.js";
 
 export const UserRegister = async (req, res, next) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     //accept data from Frontend
-    const { fullName, email, mobileNumber, password } = req.body;
+    const { fullName, email, mobileNumber, password, role } = req.body;
 
     //verify that all data exist
-    if (!fullName || !email || !mobileNumber || !password) {
+    if (!fullName || !email || !mobileNumber || !password || !role) {
       const error = new Error("All feilds required");
       error.statusCode = 400;
       return next(error);
     }
 
-    console.log(fullName, email, mobileNumber, password)
+    console.log({ fullName, email, mobileNumber, password });
+
     //Check for duplaicate user before registration
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -24,20 +25,27 @@ export const UserRegister = async (req, res, next) => {
       return next(error);
     }
 
-    console.log("sending data to db");
+    console.log("Sending Data to DB");
 
     //encrypt the password
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
 
-    console.log("Password hashing done. hashpassword = ",hashPassword )
+    console.log("Password Hashing Done. hashPassword = ", hashPassword);
+
+    const photoURL = `https://placehold.co/600x400?text=${fullName.charAt(0).toUpperCase()}`;
+    const photo = {
+      url: photoURL,
+    };
 
     //save data to database
     const newUser = await User.create({
       fullName,
-      email,
+      email: email.toLowerCase(),
       mobileNumber,
       password: hashPassword,
+      role,
+      photo,
     });
 
     // send response to Frontend
@@ -65,7 +73,7 @@ export const UserLogin = async (req, res, next) => {
     const existingUser = await User.findOne({ email });
     if (!existingUser) {
       const error = new Error("Email not registered");
-      error.statusCode = 402;
+      error.statusCode = 401;
       return next(error);
     }
 
@@ -77,7 +85,7 @@ export const UserLogin = async (req, res, next) => {
       return next(error);
     }
 
-    // Token Generation will be done here
+    //Token Generation will be done here
     genToken(existingUser, res);
 
     //send message to Frontend
@@ -90,6 +98,7 @@ export const UserLogin = async (req, res, next) => {
 
 export const UserLogout = async (req, res, next) => {
   try {
+    res.clearCookie("parleG");
     res.status(200).json({ message: "Logout Successfull" });
   } catch (error) {
     next(error);

@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import api from "../config/Api";
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "../context/AuthContext"
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const{setUser,setIsLogin}= useAuth();
-  const navigate = useNavigate()
+  const { setUser, setIsLogin, setRole } = useAuth();
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-   
     email: "",
-
     password: "",
-   
   });
   const [isLoading, setIsLoading] = useState(false);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +24,6 @@ const Login = () => {
     setFormData({
       email: "",
       password: "",
-    
     });
   };
 
@@ -35,20 +31,42 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    console.log(formData)
-
-
+    console.log(formData);
     try {
       const res = await api.post("/auth/login", formData);
       toast.success(res.data.message);
-      setUser(res.data.data)
+      setUser(res.data.data);
       setIsLogin(true);
-      sessionStorage.setItem("Cravings", JSON.stringify(res.data.data))
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
       handleClearForm();
-      navigate("/user-dashboard")
+      switch (res.data.data.role) {
+        case "manager": {
+          setRole("manager");
+          navigate("/resturant-dashboard");
+          break;
+        }
+        case "partner": {
+          setRole("partner");
+          navigate("/rider-dashboard");
+          break;
+        }
+        case "customer": {
+          setRole("customer");
+          navigate("/user-dashboard");
+          break;
+        }
+        case "admin": {
+          setRole("admin");
+          navigate("/admin-dashboard");
+          break;
+        }
+
+        default:
+          break;
+      }
     } catch (error) {
       console.log(error);
-      toast.error(erro?.response?.data?.message|| "Unknown Error");
+      toast.error(error?.response?.data?.message || "Unknown Error");
     } finally {
       setIsLoading(false);
     }
@@ -61,24 +79,23 @@ const Login = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Login
+              Welcome Back
             </h1>
-            
+            {/* <p className="text-lg text-gray-600">
+              You are 1 step away to stop your Cavings
+            </p> */}
           </div>
 
           {/* Form Container */}
           <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
             <form
               onSubmit={handleSubmit}
-             
+              onReset={handleClearForm}
               className="p-8"
             >
+              {/* Personal Information */}
               <div className="mb-10">
                 <div className="space-y-4">
-                  <div>
-                  
-                  </div>
-
                   <input
                     type="email"
                     name="email"
@@ -90,13 +107,11 @@ const Login = () => {
                     className="w-full h-fit px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
                   />
 
-                  
-
                   <input
                     type="password"
                     name="password"
                     value={formData.password}
-                    placeholder="enter Password"
+                    placeholder="Create Password"
                     onChange={handleChange}
                     required
                     disabled={isLoading}
@@ -108,16 +123,24 @@ const Login = () => {
               {/* Submit Button */}
               <div className="flex gap-4 pt-8 border-t-2 border-gray-200">
                 <button
-                  type="login"
+                  type="reset"
                   disabled={isLoading}
-                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                  className="flex-1 bg-gray-300 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-gray-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
                 >
-                  {isLoading ? "Submitting" : "Login"}
+                  Clear Form
+                </button>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="flex-1 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "loading.." : "Login"}
                 </button>
               </div>
             </form>
           </div>
 
+          {/* Footer Note */}
           <p className="text-center text-gray-600 mt-8 text-sm">
             All fields marked are mandatory. We respect your privacy.
           </p>

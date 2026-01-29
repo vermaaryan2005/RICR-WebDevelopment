@@ -1,207 +1,112 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
-import  { useEffect } from "react";
 import { useAuth } from "../../../context/AuthContext";
-import api from"../../../config/Api"
-
-
+import api from "../../../config/Api";
 
 const EditProfileModal = ({ onClose }) => {
-const{user}=useAuth();
-useEffect(() => {
-  if (user) {
-    setFormData({
-      fullName: user.fullName || "",
-      email: user.email || "",
-      mobileNumber: user.mobileNumber || "",
-      password: "",
-      confirmPassword: "",
-    });
-  }
-}, [user]);
+  const { user, setUser, setIsLogin } = useAuth();
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    mobileNumber: "",
-    password: "",
-    confirmPassword: "",
+    fullName: user.fullName,
+    email: user.email,
+    mobileNumber: user.mobileNumber,
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [validationError, setValidationError] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleClearForm = () => {
-    setFormData({
-      fullName: "",
-      email: "",
-      mobileNumber: "",
-      password: "",
-      confirmPassword: "",
-    });
-  };
-
-  const validate = () => {
-    let Error = {};
-
-    if (formData.fullName.length < 3) {
-      Error.fullName = "Name should be More Than 3 Characters";
-    } else {
-      if (!/^[A-Za-z ]+$/.test(formData.fullName)) {
-        Error.fullName = "Only Contain A-Z , a-z and space";
-      }
-    }
-
-    if (
-      !/^[\w\.]+@(gmail|outlook|ricr|yahoo)\.(com|in|co.in)$/.test(
-        formData.email
-      )
-    ) {
-      Error.email = "Use Proper Email Format";
-    }
-
-    if (!/^[6-9]\d{9}$/.test(formData.mobileNumber)) {
-      Error.mobileNumber = "Only Indian Mobile Number allowed";
-    }
-
-    setValidationError(Error);
-
-    return Object.keys(Error).length > 0 ? false : true;
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    console.log("form Submitted");
+    console.log(formData);
 
     try {
       const res = await api.put("/user/update", formData);
-      toast.success(res.data.message);
-      handleClearForm();
+      sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
+      setUser(res.data.data);
+      setIsLogin(true);
+      // sessionStorage.setItem("CravingUser", JSON.stringify(res.data.data));
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
     } finally {
-      setIsLoading(false);
+      onClose();
     }
   };
 
   return (
     <>
-      <div className='fixed inset-0 bg-black/80 flex items-center justify-center z-100'>
-      <div className='bg-amber-100 w-5xl  max-h-[85vh]  overflow-y-auto'>
-         {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
-             Edit Profile
-            </h1>
-            <p className="text-lg text-gray-600">
-              Chenge the Profile
-            </p>
-          </div>
-
-          {/* Form Container */}
-          <div className="bg-amber-100 rounded-xl shadow-2xl overflow-hidden">
-            <form
-              onSubmit={handleSubmit}
-              onReset={handleClearForm}
-              className="p-8"
+      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-100">
+        <div className="bg-white w-5xl max-h-[85vh] overflow-y-auto">
+          <div className="flex justify-between px-5 py-3 border-b border-gray-300 items-center">
+            <div>EditProfileModal</div>
+            <button
+              onClick={() => onClose()}
+              className="text-red-600 hover:text-red-900 text-2xl"
             >
-              {/* Personal Information */}
-              <div className="mb-10">
-                <div className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      name="fullName"
-                      placeholder=  {user.fullName}
-                      value={formData.fullName}
-                      onChange={handleChange}
-                      required
-                      disabled={isLoading}
-                      
-                      className="w-full h-fit px-4 py-3 border-2 border-black-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200" 
-                    />
-                    
-                    {validationError.fullName && (
-                      <span className="text-xs text-red-500">
-                        {validationError.fullName}
-                        
-                      </span>
-                   
-                    )
-                    
+              ⊗
+            </button>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <div className="p-6 space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={(e) =>
+                      setFormData({ ...formData, fullName: e.target.value })
                     }
-                    
-                  </div>
-                 
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Email
+                  </label>
                   <input
-                    type="tel"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 cursor-not-allowed "
+                    disabled
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Mobile Number
+                  </label>
+                  <input
+                    type="text"
                     name="mobileNumber"
-                    placeholder=   {user.mobileNumber}
-                    maxLength="10"
                     value={formData.mobileNumber}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 border-2 border-black-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-
-                  />
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    placeholder={user.password}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 border-2 border-black-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
-                  />
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder={user.confirmPassword}
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 border-2 border-black-300 rounded-lg focus:outline-none focus:border-indigo-500 transition disabled:cursor-not-allowed disabled:bg-gray-200"
+                    onChange={(e) =>
+                      setFormData({ ...formData, mobileNumber: e.target.value })
+                    }
+                    className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
                   />
                 </div>
               </div>
-
-              {/* Submit Button */}
-              <div className="flex gap-4 pt-8 border-t-2 border-black-200">
+              <div className="px-6 py-6 flex justify-end space-x-4 border-t border-gray-300">
                 <button
-                  type="reset"
-                  disabled={isLoading}
-                  className="flex-1 bg-red-500 text-gray-800 font-bold py-4 px-6 rounded-lg hover:bg-red-400 transition duration-300 transform hover:scale-105 disabled:scale-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-                  onClick={()=>onClose()}
+                  type="button"
+                  onClick={() => onClose()}
+                  className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 transition"
                 >
-                  Clear From
+                  Cancel
                 </button>
                 <button
                   type="submit"
-                  disabled={isLoading}
-                  className="flex-1 bg-linear-to-r from-green-600 to-indigo-700 text-white font-bold py-4 px-6 rounded-lg hover:from-blue-700 hover:to-green-800 transition duration-300 transform hover:scale-105 shadow-lg disabled:scale-100 disabled:bg-gray-300  disabled:cursor-not-allowed"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
                 >
-                  {isLoading ? "Submitting" : "Submit"}
+                  Save Changes
                 </button>
-                
               </div>
-             
             </form>
           </div>
-         
-         
-         
-         
-          
         </div>
       </div>
-         
     </>
   );
 };
