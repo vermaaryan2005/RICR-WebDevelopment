@@ -49,31 +49,38 @@ export const UserUpdate = async (req, res, next) => {
 export const UserChangePhoto = async (req, res, next) => {
   try {
     // console.log("body: ", req.body);
-    const currentUser=req.user;
+    const currentUser = req.user;
     const dp = req.file;
 
-    if(!dp){
-        const error = new Error ("Profile Picture required");
-        error.statusCode = 400;
-        return next(error)
-    }
-    if(currentUser.photo.publicID){
-        await cloudinary.uploader.destroy(currentUser.photo.publicID)
-    }
-    const b64 = Buffer.from(dp.buffer).toString("based64");
-    // console.log(b64.slice(0,100));
-    const dataURI = `data: ${dp.mimetype}; base64,${64}`;
-    console.log("DataURI", dataURI.slice(0,100));
+    //console.log("request file: ", req.file);
 
-    const result = await cloudinary.uploader.upload(dataURI,{
-        folder:"Cravings/User",
-        width:500,
-        height:500,
-        crop:"fill"
-    })
-    console.log("Image Upload successfully: ", result);
+    if (!dp) {
+      const error = new Error("Profile Picture required");
+      error.statusCode = 400;
+      return next(error);
+    }
+
+    console.log("DP:", dp);
+
+    if (currentUser.photo.publicID) {
+      await cloudinary.uploader.destroy(currentUser.photo.publicID);
+    }
+
+    const b64 = Buffer.from(dp.buffer).toString("base64");
+    // console.log(b64.slice(0,100));
+    const dataURI = `data:${dp.mimetype};base64,${b64}`;
+    console.log("DataURI", dataURI.slice(0, 100));
+
+    const result = await cloudinary.uploader.upload(dataURI, {
+      folder: "Cravings/User",
+      width: 500,
+      height: 500,
+      crop: "fill",
+    });
+
+    console.log("Image Uplaoded successfully: ", result);
     currentUser.photo.url = result.secure_url;
-    currentUser.photo.publicID=result.public_id;
+    currentUser.photo.publicID = result.public_id;
 
     await currentUser.save();
 
