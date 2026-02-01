@@ -14,9 +14,7 @@ export const NewContact = async (req, res, next) => {
       email,
       mobileNumber,
       messgae,
-    });
-
-    console.log(newContact);
+    });    console.log(newContact);
 
     res
       .status(201)
