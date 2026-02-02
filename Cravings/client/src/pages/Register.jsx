@@ -125,7 +125,7 @@ const Register = () => {
                           value={"manager"}
                           onChange={handleChange}
                         />
-                        <label htmlFor="manager">Resturant Manager</label>
+                        <label htmlFor="manager">Restaurant Manager</label>
                       </div>
                       <div className="flex items-center gap-2">
                         <input
